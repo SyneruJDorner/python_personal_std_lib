@@ -11,3 +11,4 @@ A portable little library for myself to quickly build and prototype or flesh out
   - python main.py ui_test -> [Runs a basic app in Kivy]
   - python main.py gen_test -> [Generates a random password]
   - python main.py watchgod_example -> [File watching and detection changes with watchgod in python]
+  - python main.py update -> [Updates the pip manager and packages from python code]
