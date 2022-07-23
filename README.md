@@ -1,4 +1,4 @@
-# python_personal_std_lib
+# A simple python standard library
 A portable little library for myself to quickly build and prototype or flesh out small running apps.
 
 **Running:**<br/>
