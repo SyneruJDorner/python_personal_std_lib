@@ -1,7 +1,7 @@
 import time, math, multiprocessing, collections
 from multiprocessing import shared_memory, Process, Queue, Lock, Manager
 
-class MultiProc:
+class Multi_Proc:
     '''
     Multi-Processing Class for multiprocessing
     '''
@@ -27,7 +27,7 @@ class MultiProc:
         Create a shared memory object
         '''
         cls.manager = Manager()
-        shared_mem = MultiProc.manager.list()
+        shared_mem = Multi_Proc.manager.list()
 
         #shared_mem = batch_work
 
@@ -85,7 +85,7 @@ class MultiProc:
         debug_msg: bool
             Print debug messages (Default: False)
         '''
-        MultiProc.freeze_support()
+        Multi_Proc.freeze_support()
         
         cls.is_alive = True
         cls.__set_logical_processor_count(process_count, debug_msg)

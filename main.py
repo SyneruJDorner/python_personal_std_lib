@@ -1,21 +1,20 @@
 import os, sys, time
 from standard_library import *
-from standard_library.std_lib.basics import *
-from standard_library.std_lib.basics.excel import EXCEL
-from standard_library.std_lib.basics.json import JSON
-from standard_library.std_lib.basics.pc_info import PC_INFO
-from standard_library.std_lib.selenium_lib.selenium_lib import selenium, By
-from standard_library.std_lib.multi_core_lib.multiprocessing_lib import MultiProc
-from standard_library.std_lib.dynamic_code_exec.dynamic_code_exec import Dynamic_Code_Exec
-from standard_library.std_lib.generator.password_generator import password_generator
-from standard_library.std_lib.path_changes import detected_any, detected_added, detected_deleted, detected_modified
+# from standard_library.std_lib.basics import *
+# from standard_library.std_lib.basics.excel import EXCEL
+# from standard_library.std_lib.basics.json import JSON
+# from standard_library.std_lib.basics.pc_info import PC_INFO
+# from standard_library.std_lib.selenium_lib.selenium_lib import selenium, By
+# from standard_library.std_lib.multi_core_lib.multiprocessing_lib import MultiProc
+# from standard_library.std_lib.dynamic_code_exec.dynamic_code_exec import Dynamic_Code_Exec
+# from standard_library.std_lib.generator.password_generator import password_generator
+# from standard_library.std_lib.path_changes import detected_any, detected_added, detected_deleted, detected_modified
 
 #region Selenium
 def handle_selenium_multicore(id, data, shared_mem, mutex):
     try:
         print("Started processing for index: " + str(data["unique_data"]))
         selenium.init(default_wait=15)
-
         selenium.goto(data["website"])
         selenium.inputbox({"by": By.XPATH, "identifier": "/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input", "text": data["initial_search"]}).submit()
         selenium.click({"by": By.TAG_NAME, "identifier": "h3"})
@@ -60,7 +59,7 @@ def selenium_example():
     
     #Call the MultiProc class and tell it what function along with the batch_work to execute
     #process_count tells the class how many processes to spawn and lock_main_process tells it to lock the main process
-    result = MultiProc.execute(target=handle_selenium_multicore, batch_work=batch_work, debug_msg=True, lock_main_process=True)
+    result = Multi_Proc.execute(target=handle_selenium_multicore, batch_work=batch_work, debug_msg=True, lock_main_process=True)
 
     for i in range(0, len(batch_work)):
         contains_num = False
@@ -118,6 +117,12 @@ def watch_god_example():
     detected_any(watchgod_path, watch_god_example_test)
 #endregion
 
+#region Update
+def update_test():
+    update_pip_manager()
+    update_pip_packages()
+#endregion
+
 def main(argv):    
     if (len(argv) <= 1):
         print("Please enter one of the following args: 'selenium_example'.")
@@ -144,8 +149,11 @@ def main(argv):
     elif (argv[1] == "watchgod_example"):
         watch_god_example()
         return
+    elif (argv[1] == "update"):
+        update_test()
+        return
     elif (argv[1] in ["h", "-h", "help"]):
-        args = ["selenium_example", "pc_stats", "dynamic_code", "ui_test", "gen_test", "watchgod_example"]
+        args = ["selenium_example", "pc_stats", "dynamic_code", "ui_test", "gen_test", "watchgod_example", "update"]
         print("Please enter one of the following args:")
         print(args)
         return

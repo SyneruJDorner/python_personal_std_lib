@@ -1,1 +1,1 @@
-from .multi_processing import Multi_Processing
+from .multiprocessing_lib import Multi_Proc

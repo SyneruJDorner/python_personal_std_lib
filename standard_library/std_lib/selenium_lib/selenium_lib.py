@@ -70,7 +70,7 @@ class selenium():
         Private Function
         Quits the selenium driver.
         '''
-        print("Closing all selenium windows, not the drivers! This means we can still run the sselenium refs.")
+        print("Closing all selenium windows, not the drivers! This means we can still run the selenium refs.")
         cls.__driver.quit()
 
     @classmethod
@@ -190,21 +190,21 @@ class selenium():
         '''
         elem = None
         if (defined_by == By.ID):
-            elem = cls.__driver.find_element_by_id(identifier)
+            elem = cls.__driver.find_element(By.ID, identifier)
         elif (defined_by == By.XPATH):
-            elem = cls.__driver.find_element_by_xpath(identifier)
+            elem = cls.__driver.find_element(By.XPATH, identifier)
         elif (defined_by == By.LINK_TEXT):
-            elem = cls.__driver.find_element_by_link_text(identifier)
+            elem = cls.__driver.find_element(By.LINK_TEXT, identifier)
         elif (defined_by == By.PARTIAL_LINK_TEXT):
-            elem = cls.__driver.find_element_by_partial_link_text(identifier)
+            elem = cls.__driver.find_element(By.PARTIAL_LINK_TEXT, identifier)
         elif (defined_by == By.NAME):
-            elem = cls.__driver.find_element_by_name(identifier)
+            elem = cls.__driver.find_element(By.NAME, identifier)
         elif (defined_by == By.TAG_NAME):
-            elem = cls.__driver.find_element_by_tag_name(identifier)
+            elem = cls.__driver.find_element(By.TAG_NAME, identifier)
         elif (defined_by == By.CLASS_NAME):
-            elem = cls.__driver.find_element_by_class_name(identifier)
+            elem = cls.__driver.find_element(By.CLASS_NAME, identifier)
         elif (defined_by == By.CSS_SELECTOR):
-            elem = cls.__driver.find_element_by_css_selector(identifier)
+            elem = cls.__driver.find_element(By.CSS_SELECTOR, identifier)
         cls.__current_target_elem = elem
         return elem
 
@@ -322,7 +322,7 @@ class selenium():
         xpath_info = "//*[contains(text(), '" + inner_text + "')]"
         cls.__wait.until(EC.presence_of_element_located((by_info, xpath_info)))
         cls.__wait.until(EC.element_to_be_clickable((by_info, xpath_info)))
-        elem = cls.__driver.find_element_by_xpath(xpath_info)
+        elem = cls.__driver.find_element(By.XPATH, xpath_info)
         return elem
 
 
