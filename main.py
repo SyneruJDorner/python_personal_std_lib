@@ -1,14 +1,6 @@
 import os, sys, time
+from re import T
 from standard_library import *
-# from standard_library.std_lib.basics import *
-# from standard_library.std_lib.basics.excel import EXCEL
-# from standard_library.std_lib.basics.json import JSON
-# from standard_library.std_lib.basics.pc_info import PC_INFO
-# from standard_library.std_lib.selenium_lib.selenium_lib import selenium, By
-# from standard_library.std_lib.multi_core_lib.multiprocessing_lib import MultiProc
-# from standard_library.std_lib.dynamic_code_exec.dynamic_code_exec import Dynamic_Code_Exec
-# from standard_library.std_lib.generator.password_generator import password_generator
-# from standard_library.std_lib.path_changes import detected_any, detected_added, detected_deleted, detected_modified
 
 #region Selenium
 def handle_selenium_multicore(id, data, shared_mem, mutex):
@@ -100,6 +92,14 @@ def dynamic_code_example():
     pass
 #endregion
 
+#region UI App
+def ui_app_example():
+    print("UI App Example")
+    from standard_library.std_lib.ui_lib.ui_lib import UIApp
+    UIApp().run()
+    pass
+#endregion
+
 #region Password Generator
 def password_generator_example():
     print(password_generator(8, True, True, True, True))
@@ -123,36 +123,34 @@ def update_test():
     update_pip_packages()
 #endregion
 
+#region Cython
+def cython_example():
+    print("Cython Example")
+    pyx_files = [os.path.join(ROOT_PATH.get_path(), "standard_library", "std_lib", "cython", "hello_world.pyx")]
+    print(pyx_files)
+    compile_files(pyx_files)
+    pass
+#endregion
+
 def main(argv):    
     if (len(argv) <= 1):
         print("Please enter one of the following args: 'selenium_example'.")
         return
 
-    if (argv[1] == "selenium_example"):
-        selenium_example()
-        return
-    elif (argv[1] == "pc_stats"):
-        pc_stats_example()
-        return
-    elif (argv[1] == "dynamic_code"):
-        dynamic_code_example()
-        return
-    elif (argv[1] == "ui_test"):
-        #ui_testing_example()
-        from standard_library.std_lib.ui_lib.ui_lib import UIApp
-        UIApp().run()
-        return
-    elif (argv[1] == "gen_test"):
-        #ui_testing_example()
-        password_generator_example()
-        return
-    elif (argv[1] == "watchgod_example"):
-        watch_god_example()
-        return
-    elif (argv[1] == "update"):
-        update_test()
-        return
-    elif (argv[1] in ["h", "-h", "help"]):
+    execute_option = {
+        "selenium_ex": selenium_example,
+        "pc_stats_ex": pc_stats_example,
+        "dynamic_code_ex": dynamic_code_example,
+        "ui_app_ex": ui_app_example,
+        "gen_pass_ex": password_generator_example,
+        "watchgod_ex": watch_god_example,
+        "update_ex": update_test,
+        "cython_ex": cython_example
+    }
+
+    try:
+        execute_option[argv[1]]()
+    except KeyError:
         args = ["selenium_example", "pc_stats", "dynamic_code", "ui_test", "gen_test", "watchgod_example", "update"]
         print("Please enter one of the following args:")
         print(args)
