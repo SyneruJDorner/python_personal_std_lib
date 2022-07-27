@@ -123,15 +123,6 @@ def update_test():
     update_pip_packages()
 #endregion
 
-#region Cython
-def cython_example():
-    print("Cython Example")
-    pyx_files = [os.path.join(ROOT_PATH.get_path(), "standard_library", "std_lib", "cython", "hello_world.pyx")]
-    print(pyx_files)
-    compile_files(pyx_files)
-    pass
-#endregion
-
 def main(argv):    
     if (len(argv) <= 1):
         print("Please enter one of the following args: 'selenium_example'.")
