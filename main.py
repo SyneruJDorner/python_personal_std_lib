@@ -122,15 +122,20 @@ def update_test():
     update_pip_packages()
 #endregion
 
+#region Singleton
+def singleton_example():
+    @Singleton
+    class SingletonTest():
+        name = "Bob"
+        pass
+    print(SingletonTest.instance().name)
+    pass
+#endregion
+
 @exception_handler
 def main(argv):
 
     Process_Logger.init("test_logs")
-
-    class test(Exception):
-        pass
-
-    raise test("Test")
 
     if (len(argv) <= 1):
         print("Please enter one of the following args: 'selenium_example'.")
@@ -143,7 +148,8 @@ def main(argv):
         "ui_app_ex": ui_app_example,
         "gen_pass_ex": password_generator_example,
         "watchgod_ex": watch_god_example,
-        "update_ex": update_test
+        "update_ex": update_test,
+        "singleton_ex": singleton_example
     }
 
     try:

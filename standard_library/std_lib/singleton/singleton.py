@@ -1,4 +1,4 @@
-class Singleton:
+class Singleton():
     '''
     A decorator that creates a singleton out of a class.
     '''
