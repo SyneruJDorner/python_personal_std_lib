@@ -36,3 +36,6 @@ from standard_library.std_lib.singleton.singleton import Singleton
 
 #Import update
 from standard_library.std_lib.update.update import update_pip_packages, update_pip_manager
+
+#Import Process Logger
+from standard_library.std_lib.process_logs import Process_Logger, exception_handler, print, print_warning, print_error

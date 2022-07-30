@@ -1,0 +1,33 @@
+Install docker desktop
+https://www.docker.com/
+
+Download container for python with docker
+> docker image pull python
+
+Create a container
+docker container create --tty --interactive python
+
+List existing Containers
+docker container ps --all
+
+Rename container with
+docker container rename <old_name> <new_name>
+
+How to start interacting within the container
+docker container start --interactive <container_name>
+
+Delete container
+docker container rm <container_name>
+
+Some shortcuts
+docker pull = docker image pull
+docker create = docker container create
+docker start = docker container start
+docker ps = docker container ps
+docker rm = docker container rm
+docker run = docker container run
+docker rmi = docker image rm
+docker --help
+docker run --help
+docker rm --help
+docker --version
